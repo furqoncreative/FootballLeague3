@@ -11,14 +11,22 @@ import com.furqoncreative.kadesubs3.ui.favorite.FavoriteFragment
 import com.furqoncreative.kadesubs3.ui.league.LeagueFragment
 import com.furqoncreative.kadesubs3.ui.match.MatchFragment
 import com.furqoncreative.kadesubs3.ui.search.ResultMatchActivity
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
 import com.pandora.bottomnavigator.BottomNavigator
 import org.jetbrains.anko.startActivity
+
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private lateinit var navigator: BottomNavigator
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        AppCenter.start(
+            application, "ca0177a4-2500-4dc8-83bc-d327cfc5ba75",
+            Analytics::class.java, Crashes::class.java
+        )
 
         navigator = BottomNavigator.onCreate(
             fragmentContainer = R.id.fragment_container,
